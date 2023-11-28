@@ -7,6 +7,11 @@
   font-size: 18px;
   font-weight: 400;
   color: var(--text-color, #f1b2ce);
+  background-image: url(../images/cover-image-dark.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .title {
@@ -18,8 +23,7 @@
 }
 
 .header {
-  width: 100%;
-  min-height: 668px;
+  block-size: 100vh;
   padding: 10px;
 }
 
@@ -83,10 +87,6 @@
 }
 
 .decorated-zone {
-  background-image: url(../images/cover-image-dark.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   position: relative;
 }
 
@@ -174,7 +174,7 @@
 }
 
 .footer {
-  min-block-size: 667px;
+  block-size: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
