@@ -69,6 +69,7 @@
 
 .header__theme-menu-button_active {
   border: 1px solid var(--main-color, #ff0070);
+  pointer-events: none
 }
 
 .header__img-rec {
