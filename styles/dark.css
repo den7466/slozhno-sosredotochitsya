@@ -18,6 +18,10 @@
   background-image: url(../images/cover-image-dark.png);
 }
 
-.theme_dark .header__img-rec {
+.theme_dark .header__rec {
   display: flex;
+}
+
+.theme_dark .header__theme-menu-button:hover {
+  border: 1px solid rgba(255, 0, 112, .4);
 }
