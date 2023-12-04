@@ -2,7 +2,7 @@
 
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
-  font-family: var(--main-font, 'IBM Plex mono');
+  font-family: var(--main-font, 'IBM Plex mono', monospace);
   font-size: 18px;
   font-weight: 400;
   color: var(--text-color, #f1b2ce);
@@ -16,7 +16,7 @@
 
 .title {
   color: var(--title-color, #d800ff);
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-size: var(--title-font-size);
   font-weight: 700;
   line-height: .825;
   text-shadow: 4px 4px 0 var(--accent-color, #ff0070);
@@ -29,8 +29,11 @@
 }
 
 .header {
-  min-block-size: 100vh;
   padding: 10px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 25px 6.1em 1fr 6.5em 25px;
+  gap: 1.8em;
 }
 
 .header__title {
@@ -62,10 +65,15 @@
   font-weight: 400;
   text-transform: lowercase;
   cursor: pointer;
+  transition: border .3s ease;
 }
 
 .header__theme-menu-button:hover {
-  border: 1px solid var(--main-color, #ff0070);
+  border: 1px solid rgba(255, 0, 112, .4);
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
 }
 
 .header__theme-menu-button:focus-visible {
@@ -78,7 +86,7 @@
   pointer-events: none
 }
 
-.header__img-rec {
+.header__rec {
   position: absolute;
   display: flex;
   align-items: center;
@@ -87,25 +95,23 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 1.38;
+  text-transform: uppercase;
   top: 10px;
   right: 18px;
 }
 
-.header__img-rec::after {
+.header__rec::after {
   content: '';
   display: inline-block;
   background-color: var(--main-color, #ff0070);
-  filter: drop-shadow(0px 0px 4px var(--main-color, #ff0070));
+  box-shadow: 0 0 4px 2px var(--main-color, #ff0070);
   width: 9px;
   height: 9px;
   border-radius: 50%;
 }
 
 .decorated-zone {
-  position: relative;
-  display: grid;
-  grid-template-rows: 25px 6.1em 1fr 6.5em 25px;
-  gap: 1.8em;
+  min-block-size: 100vh;
 }
 
 .decorated-zone::before {
@@ -175,10 +181,15 @@
   border: 1px solid transparent;
   text-decoration: none;
   text-shadow: 2px 2px 0px var(--accent-color, #ff0070);
+  transition: border .3s ease;
 }
 
 .article__link:hover {
   border-block-end: 1px solid var(--text-color, #f1b2ce);
+}
+
+.article__link:focus {
+  outline: none;
 }
 
 .article__link:focus-visible {
@@ -208,28 +219,9 @@
 }
 
 .footer {
-  min-block-size: 100vh;
   display: grid;
   grid-template-rows: 25px 1fr 25px;
   padding: 10px;
-}
-
-.footer::before {
-  content: '';
-  justify-self: end;
-  inline-size: 25px;
-  block-size: 25px;
-  border-inline-end: 1px solid var(--main-color, #ff0070);
-  border-block-start: 1px solid var(--main-color, #ff0070);
-}
-
-.footer::after {
-  content: '';
-  align-self: end;
-  inline-size: 25px;
-  block-size: 25px;
-  border-inline-start: 1px solid var(--main-color, #ff0070);
-  border-block-end: 1px solid var(--main-color, #ff0070);
 }
 
 .footer__title {
@@ -240,11 +232,12 @@
 
 @media (width >= 768px) {
   .title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+    --title-font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 
   .header {
     padding: 20px;
+    grid-template-rows: 25px 33% 1fr 33% 25px;
   }
 
   .header__title {
@@ -258,13 +251,9 @@
     align-self: center;
   }
 
-  .header__img-rec {
+  .header__rec {
     top: 20px;
     right: 28px;
-  }
-
-  .decorated-zone {
-    grid-template-rows: 25px 33% 1fr 33% 25px;
   }
 
   .main {
@@ -342,6 +331,22 @@
 }
 
 @media (width >= 1024px) {
+  .header {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 25px 30% 1fr 30% 25px;
+    gap: 1em;
+  }
+
+  .header::before {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+  }
+
+  .header::after {
+    grid-column: 1 / 4;
+    grid-row: 5 / 6;
+  }
+
   .header__theme-menu {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -367,22 +372,6 @@
   .header__description {
     grid-column: 1 / 4;
     grid-row: 4 / 5;
-  }
-
-  .decorated-zone {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 25px 30% 1fr 30% 25px;
-    gap: 1em;
-  }
-
-  .decorated-zone::before {
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
-  }
-
-  .decorated-zone::after {
-    grid-column: 1 / 4;
-    grid-row: 5 / 6;
   }
 
   .problem,

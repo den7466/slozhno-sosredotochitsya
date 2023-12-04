@@ -21,8 +21,12 @@
   background-image: url(../images/cover-image-light.png);
 }
 
-.theme_light .header__img-rec {
+.theme_light .header__rec {
   display: none;
+}
+
+.theme_light .header__theme-menu-button:hover {
+  border: 1px solid rgba(50, 49, 45, .4);
 }
 
 @media (prefers-color-scheme: light) {
@@ -36,7 +40,11 @@
     background-image: url(../images/cover-image-light.png);
   }
 
-  .header__img-rec {
+  .header__rec {
     display: none;
+  }
+
+  .header__theme-menu-button:hover {
+    border: 1px solid rgba(50, 49, 45, .4);
   }
 }
