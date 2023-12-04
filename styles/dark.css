@@ -16,5 +16,9 @@
   --accent-text: #000028;
   --title-color: #d800ff;
   --main-color: #ff0070;
+  background-image: url(../images/cover-image-dark.png);
 }
 
+.theme_dark .header__img-rec {
+  display: flex;
+}
